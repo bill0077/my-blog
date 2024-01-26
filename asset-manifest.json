@@ -1,17 +1,18 @@
 {
   "files": {
     "main.css": "/my-blog/static/css/main.7be7a2d8.css",
-    "main.js": "/my-blog/static/js/main.cdf163d0.js",
+    "main.js": "/my-blog/static/js/main.b72b156f.js",
     "static/js/787.09061e0f.chunk.js": "/my-blog/static/js/787.09061e0f.chunk.js",
+    "static/media/bmw.glb": "/my-blog/static/media/bmw.262a8fb492005b6ada1a.glb",
     "static/media/TAEBAEK milkyway.ttf": "/my-blog/static/media/TAEBAEK milkyway.be8807805a66e1365e5d.ttf",
     "static/media/TAEBAEK font.ttf": "/my-blog/static/media/TAEBAEK font.1f07c3ec4f67d3a56954.ttf",
     "index.html": "/my-blog/index.html",
     "main.7be7a2d8.css.map": "/my-blog/static/css/main.7be7a2d8.css.map",
-    "main.cdf163d0.js.map": "/my-blog/static/js/main.cdf163d0.js.map",
+    "main.b72b156f.js.map": "/my-blog/static/js/main.b72b156f.js.map",
     "787.09061e0f.chunk.js.map": "/my-blog/static/js/787.09061e0f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7be7a2d8.css",
-    "static/js/main.cdf163d0.js"
+    "static/js/main.b72b156f.js"
   ]
 }

@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "taebaek";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./TAEBAEK\ font.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "taebaek-milkyway";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./TAEBAEK milkyway.ttf") format("truetype");
+}

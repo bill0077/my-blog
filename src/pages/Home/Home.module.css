@@ -1,0 +1,119 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+}
+
+.home__main {
+  width: 70%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: linear-gradient(to top left, steelblue, cadetblue);
+  box-shadow: 2vh 1vh 4vh 0vh gray;
+}
+
+.home__main__canvas {
+  width: 50vw;
+  height: 50vh;
+
+  padding: 2vh;
+}
+
+.home__main__title-box {
+  width: 90%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.home__main__title-box__title {
+  font-family: "taebaek";
+  font-size: 8vh;
+  font-weight: bold;
+
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+
+  color: white;
+}
+
+.home__main__title-box__subtitle {
+  font-family: "taebaek-milkyway";
+  font-size: 5vh;
+  font-weight: bold;
+
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+
+  color: white;
+}
+
+.home__main__title-box__contact {
+  text-decoration-line: none;
+
+  font-family: "Consolas", monospace;
+  font-size: 3vh;
+  font-weight: normal;
+
+  padding-top: 1vh;
+
+  color: white;
+}
+
+.home__contents {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.home__contents__contents-tree {
+  width: 100%;
+  height: 60%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home__contents__contents-tree__leaf {
+  font-family: "Consolas", monospace;
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+.home__recommended {
+  width: 100%;
+
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.home__recommended__title {
+  font-family: "taebaek";
+  font-size: 3vh;
+  font-weight: normal;
+
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.home__recommended__post {
+  font-family: "taebaek-milkyway";
+  font-size: 3vh;
+  font-weight: bold;
+
+  padding-top: 2%;
+  padding-bottom: 2%;
+}

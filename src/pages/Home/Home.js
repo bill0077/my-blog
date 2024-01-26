@@ -5,7 +5,7 @@ import styles from "./Home.module.css";
 import "../../assets/fonts/font.css";
 
 function CarModel(props) {
-  const { scene } = useGLTF("/bmw.glb");
+  const { scene } = useGLTF("/my-blog/models/bmw/bmw_m4_competition_m_package.glb");
   return <primitive object={scene} {...props} />
 }
 

@@ -1,6 +1,8 @@
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
 
+import ContentsTree from "../../components/ContentsTree/ContentsTree";
+
 import styles from "./Home.module.css";
 import "../../assets/fonts/font.css";
 
@@ -9,35 +11,13 @@ function CarModel(props) {
   return <primitive object={scene} {...props} />
 }
 
-function ContentsTree() {
-  return (
-    <div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>Contents</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;├── PersonalHistory</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;├── ProblemSolving</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── boj </div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── programmers</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;├── SideProjects</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── arbitrage-bot</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── lambda-calculator </div>      
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── my-blog </div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── tetris-ai</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;│</div>
-      <div className={styles["home__contents__contents-tree__leaf"]}>&nbsp;&nbsp;└── etc</div>
-    </div>
-  );
-}
-
 function RecommendedList() {
   return (
     <div>
-      <div className={styles["home__recommended__title"]}>Recommended Posts</div>
-      <li className={styles["home__recommended__post"]}>개발 블로그 개발기</li>
-      <li className={styles["home__recommended__post"]}>테트리스 ai 개발기</li>
-      <li className={styles["home__recommended__post"]}>PS: 백준(boj) 1234번 풀이 </li>
+      <div className={styles["recommended-list__title"]}>Recommended Posts</div>
+      <li className={styles["recommended-list__elem"]}>개발 블로그 개발기</li>
+      <li className={styles["recommended-list__elem"]}>테트리스 ai 개발기</li>
+      <li className={styles["recommended-list__elem"]}>PS: 백준(boj) 1234번 풀이 </li>
     </div>
   );
 }
@@ -63,10 +43,10 @@ function Home() {
       </div>
     </div>
     <div className={styles["home__contents"]}>
-      <div className={styles["home__contents__contents-tree"]}>
+      <div className={styles["home__contents__categories"]}>
         <ContentsTree />
       </div>
-      <div className={styles["home__recommended"]}>
+      <div className={styles["home__contents__recommended"]}>
         <RecommendedList />
       </div>
     </div>

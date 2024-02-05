@@ -1,7 +1,7 @@
 # 개발 블로그 개발기 - Post 페이지 만들기
 **Demo: https://bill0077.github.io/my-blog  
-Git commit:  
-Date:**
+Git commit: https://github.com/bill0077/my-blog/commit/58b5904bf4f3b4aa68166000286c521d754ac04c  
+Date: 2024.01.30**
 
 현재까지 만든 블로그는 홈과 dummy인 목차와 추천 글 항목만이 있을 뿐이다. 이제 실제로 글을 포스팅 할 수 있도록 구현해보자.
 
@@ -69,6 +69,7 @@ export default App;
 > **dynamic routing이란?**  
 > dynamic routing은 경로를 미리 정해두지 않고 동적으로 설정하는 방식이다. 처리해야할 모든 url을 미리 정의하지 않고 특정 규칙에 맞는 url이 요청되면 해당 url에 맞는 페이지를 화면에 띄워주는 방식이다. 모든 페이지마다 각각의 컴포넌트와 경로를 정의해 두어야하는 static routing의 단점을 보완한 것이다. 위의 App.js에서의 예를 들면 
 
+## singple page apps with github pages https://github.com/rafgraph/spa-github-pages
 
 ## 목차 만들기
 각종 tistory 블로그 등을 확인해보았을 때 상위 분류와 하위 분류 목차가 있고, 상위 분류를 선택하면 여러 하위분류의 글들이 섞여 나오고, 하위 분류를 선택하면 하위 분류의 글들만이 노출되는 방식으로 이루어져 있었다. 그보다 딱히 더 획기적인 대안이 떠오르지는 않았기에 이 방식을 그대로 구현해 보겠다.

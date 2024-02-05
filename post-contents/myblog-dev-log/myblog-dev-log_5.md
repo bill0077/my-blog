@@ -39,7 +39,11 @@ npm install --save gh-pages
 ```cmd
 npm run deploy
 ```
-배포에는 시간이 좀 걸리는데, 프로젝트의 github repository에서 `Deployments` 항목을 가보면 여태 진행한 deploy 기록과 현재 진행중인 deploy의 진행 상태를 확인할 수 있다. deploy가 완료되고 https://*githubusername*.github.io/*repositoryname* 로 접속해보면 정상적으로 페이지가 보이게 된다(만약 이 과정에서 흰 화면이나 에러가 발생하면 1. router의 basename 관련 문제인지 먼저 확인해보고, 2. hook 등에서 url을 올바르게 참조하고 있는지 확인해보자).
+배포에는 시간이 좀 걸리는데, 프로젝트의 github repository에서 `Deployments` 항목을 가보면 여태 진행한 deploy 기록과 현재 진행중인 deploy의 진행 상태를 확인할 수 있다. 
+<center>
+<img src="media/blog-deploying.png" width="100%" title="blog-deploying"/>
+</center>
+deploy가 완료되고 https://*githubusername*.github.io/*repositoryname* 로 접속해보면 정상적으로 페이지가 보이게 된다(만약 이 과정에서 흰 화면이나 에러가 발생하면 1. router의 basename 관련 문제인지 먼저 확인해보고, 2. hook 등에서 url을 올바르게 참조하고 있는지 확인해보자).
 
 ***P.S.***
 배포 과정에서 url을 잘못 입력하거나 실패하는 등의 문제가 생기면 아래와 같은 방법으로 deploy를 초기화하고 다시 진행할 수 있다. 나의 경우 무작정 gh-pages branch를 지우자 에러가 발생해서 초기화를 진행했다. 

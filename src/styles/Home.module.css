@@ -24,7 +24,7 @@
   padding: 2vh;
 }
 
-.home__main__title-box {
+.home__main__titleBox {
   width: 90%;
 
   display: flex;
@@ -33,7 +33,7 @@
   align-items: flex-end;
 }
 
-.home__main__title-box__title {
+.home__main__titleBox__title {
   font-family: "taebaek";
   font-size: 8vh;
   font-weight: bold;
@@ -44,7 +44,7 @@
   color: white;
 }
 
-.home__main__title-box__subtitle {
+.home__main__titleBox__subtitle {
   font-family: "taebaek-milkyway";
   font-size: 5vh;
   font-weight: bold;
@@ -55,7 +55,7 @@
   color: white;
 }
 
-.home__main__title-box__contact {
+.home__main__titleBox__contact {
   text-decoration-line: none;
 
   font-family: "Consolas", monospace;
@@ -94,7 +94,7 @@
   align-items: center;
 }
 
-.recommended-list__title {
+.recommendedList__title {
   font-family: "taebaek";
   font-size: 3vh;
   font-weight: normal;
@@ -103,7 +103,7 @@
   padding-bottom: 3%;
 }
 
-.recommended-list__elem {
+.recommendedList__elem {
   font-family: "taebaek-milkyway";
   font-size: 3vh;
   font-weight: bold;

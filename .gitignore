@@ -21,6 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.cache
 
 # user contents
-public/post-contents
+public
+
+# environment variables
+.env.*

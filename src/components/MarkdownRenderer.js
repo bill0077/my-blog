@@ -4,22 +4,23 @@ import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 
+/** Renderer component that converts text into a React component according to Markdown format. */
 export default function MarkdownRenderer({ text }) {
   return (
     <Markdown 
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
+      remarkPlugins={[remarkGfm]} // enables GFM extensions
+      rehypePlugins={[rehypeRaw]} // enables html tags inside markdown file
       components={{
-        code(props) {
+        code(props) { // apply syntax highlighting inside code blocks
           const {children, className, node, ...rest} = props
-          const match = /language-(\w+)/.exec(className || '')
+          const match = /language-(\w+)/.exec(className || '') // find matching language
           return match ? (
             <SyntaxHighlighter
               {...rest}
               PreTag="div"
               children={String(children).replace(/\n$/, '')}
               language={match[1]}
-              /*style={dark}*/
+              /*style={dark}*/ // dark mode for code block 
             />
           ) : (
             <code {...rest} className={className}>

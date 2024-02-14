@@ -7,11 +7,15 @@ import ContentsTree from "../components/ContentsTree";
 import * as styles from "../styles/Home.module.css";
 import "../assets/fonts/font.css";
 
+/** 3D car model component used on the blog main page. 
+    Will be changed to an appropriate model later. */
 function CarModel(props) {
   const { scene } = useGLTF(`${process.env.GATSBY_PUBLIC_URL}/models/bmw/bmw_m4_competition_m_package.glb`);
   return <primitive object={scene} {...props} />
 }
 
+/** Dummy table of contents component. 
+    To be modified later */
 function RecommendedList() {
   return (
     <div>

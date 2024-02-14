@@ -1,4 +1,4 @@
-var get_mdfiles_as_node = function(dir) {
+var get_mdfiles_as_node = function(root, dir) {
 
   var filesystem = require("fs");
   var results = [];
@@ -9,10 +9,12 @@ var get_mdfiles_as_node = function(dir) {
       var stat = filesystem.statSync(file);
 
       if (stat && stat.isDirectory()) {
-          results = results.concat(get_mdfiles_as_node(file))
+          results = results.concat(get_mdfiles_as_node(root, file))
       } else {
         if (curr_file.split(".")[1] === "md") {
-          results.push({postTitle: curr_file.split(".")[0], filePath: file.split("public/")[1]});
+          var title = curr_file.split(".")[0];
+          var category = dir.split(root+'/')[1];
+          results.push({postTitle: title, postCategory: category, filePath: root+'/'+category+'/'+curr_file, mediaPath: root+'/'+category+'/media'});
         };
       }
 
@@ -23,9 +25,9 @@ var get_mdfiles_as_node = function(dir) {
 
 exports.createPages = ({ actions }) => {
   const { createPage } = actions
-  get_mdfiles_as_node("./public/post-contents").forEach(node => {
+  get_mdfiles_as_node("post-contents", "./public/post-contents").forEach(node => {
     createPage({
-      path: `/posts/${node.postTitle}`,
+      path: `/posts/${node.postCategory}/${node.postTitle}`,
       component: require.resolve(`./src/templates/Post.js`),
       context: node
     })

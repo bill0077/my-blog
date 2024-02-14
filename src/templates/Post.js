@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
 
 import ContentsTree from "../components/ContentsTree"
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 import * as styles from "../styles/Post.module.css";
 import "../assets/fonts/font.css";
 
-
-function Post({ pageContext }) {
-  const [postData, setData] = useState(null);
+export default function Post({ pageContext }) {
+  const [postContent, setPostContent] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,7 +16,8 @@ function Post({ pageContext }) {
         await fetch(`${process.env.GATSBY_PUBLIC_URL}/${pageContext.filePath}`)
         .then((r) => r.text())
         .then(text  => {
-          setData(text);
+          const path_resolved = text.replace(/___MEDIA_FILE_PATH___/g, `${process.env.GATSBY_PUBLIC_URL}/${pageContext.mediaPath}`);
+          setPostContent(path_resolved);
         })
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -40,10 +40,8 @@ function Post({ pageContext }) {
         <ContentsTree />
       </div>
       <div className={styles["post__content"]}>
-        <div>{postData}</div>
+        <MarkdownRenderer text={postContent} />
       </div>
     </div>
   );
 }
-
-export default Post;

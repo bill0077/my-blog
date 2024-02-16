@@ -4,7 +4,6 @@ import ContentsTree from "../components/ContentsTree"
 import MarkdownRenderer from '../components/MarkdownRenderer';
 
 import * as styles from "../styles/Post.module.css";
-import "../assets/fonts/font.css";
 
 /** Template component for posting.
     Use 'pageContext' to fetch the markdown file to be used as content. */

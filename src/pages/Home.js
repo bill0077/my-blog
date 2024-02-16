@@ -5,7 +5,6 @@ import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
 import ContentsTree from "../components/ContentsTree";
 
 import * as styles from "../styles/Home.module.css";
-import "../assets/fonts/font.css";
 
 /** 3D car model component used on the blog main page. 
     Will be changed to an appropriate model later. */

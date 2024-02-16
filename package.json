@@ -24,10 +24,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "predeploy": "gatsby build --prefix-paths",
+    "deploy": "gh-pages -d public",
     "develop": "gatsby develop -p 3000 -o",
-    "build": "gatsby build"
+    "build": "gatsby build --prefix-paths",
+    "serve": "gatsby build --prefix-paths && gatsby serve --prefix-paths -p 3000 -o"
   },
   "eslintConfig": {
     "extends": [

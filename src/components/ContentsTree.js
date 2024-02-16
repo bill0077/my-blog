@@ -1,7 +1,6 @@
 import React from "react"
 
 import * as styles from "../styles/ContentsTree.module.css";
-import "../assets/fonts/font.css";
 
 /** Dummy table of contents component.
     To be modified later. */

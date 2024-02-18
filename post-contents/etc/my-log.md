@@ -1,6 +1,6 @@
 ---
 title: "그냥 기록"
-date: "keep continue"
+date: "2024-02-19"
 author: "bill0077"
 ---
 

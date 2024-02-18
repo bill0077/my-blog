@@ -14,11 +14,11 @@ export default function Post({ pageContext }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`${process.env.GATSBY_PUBLIC_URL}/${pageContext.filePath}`)
+        await fetch(`${process.env.GATSBY_FILESERVER_URL}/${pageContext.filePath}`)
         .then((r) => r.text())
         .then(text  => {
           // resolve path variable by replacing placeholder '___MEDIA_FILE_PATH___' inside the markdown file
-          const path_resolved = text.replace(/___MEDIA_FILE_PATH___/g, `${process.env.GATSBY_PUBLIC_URL}/${pageContext.mediaPath}`);
+          const path_resolved = text.replace(/___MEDIA_FILE_PATH___/g, `${process.env.GATSBY_FILESERVER_URL}/${pageContext.mediaPath}`);
           setPostContent(path_resolved);
         })
       } catch (error) {

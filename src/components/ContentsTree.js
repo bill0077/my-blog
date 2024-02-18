@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import { Link } from "gatsby";
 
 import * as styles from "../styles/ContentsTree.module.css";
 
@@ -18,10 +19,10 @@ function ContentsTree() {
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;├── SideProjects</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── arbitrage-bot</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── lambda-calculator </div>      
-      <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── my-blog </div>
+      <Link to={`${process.env.GATSBY_PUBLIC_URL}/myblog-dev-log`} className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── my-blog </Link>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── tetris-ai</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│</div>
-      <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;└── etc</div>
+      <Link to={`${process.env.GATSBY_PUBLIC_URL}/devops`} className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;└── etc</Link>
     </div>
   );
 }

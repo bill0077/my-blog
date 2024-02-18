@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import ContentsTree from "../components/ContentsTree"
+import Navigator from "../components/Navigator";
 import MarkdownRenderer from '../components/MarkdownRenderer';
 
 import * as styles from "../styles/Post.module.css";
@@ -37,11 +37,11 @@ export default function Post({ pageContext }) {
 
   return (
     <div className={styles["post"]}>
-      <div className={styles["post__side"]}>
-        <div className={styles["post__side__title"]}>bill0077.log</div>
-        <ContentsTree />
-      </div>
+      <Navigator />
       <div className={styles["post__content"]}>
+        <div className={styles["post__content__title"]}>{pageContext.postTitle}</div>
+        <div className={styles["post__content__date"]}>{`date: ${pageContext.postDate}`}</div>
+        <div className={styles["post__content__author"]}>{`written by ${pageContext.postAuthor}`}</div>
         <MarkdownRenderer text={postContent} />
       </div>
     </div>

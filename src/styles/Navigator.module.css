@@ -1,0 +1,25 @@
+.navigator {
+  width: 25%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  position: fixed;
+
+  box-shadow: 2vh 1vh 4vh 0vh gray;
+}
+
+.navigator__title {
+  color: black;
+  text-decoration: none;
+  
+  font-family: "taebaek";
+  font-size: 3vh;
+  font-weight: bold;
+
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}

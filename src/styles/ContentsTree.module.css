@@ -1,4 +1,7 @@
 .contentsTree__leaf {
+  color: black;
+  text-decoration: none;
+  
   font-family: "Consolas", monospace;
   font-size: 3vh;
   font-weight: bold;

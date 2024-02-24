@@ -18,7 +18,7 @@ export default function PostList({ pageContext }) {
             <Link className={styles["postList__content__post__title"]} to={`${process.env.GATSBY_PUBLIC_URL}/${post.postLink}`}>{post.postTitle}</Link>
             <div className={styles["postList__content__post__excerpt"]}>{post.postExcerpt}</div>
             <div className={styles["postList__content__post__date"]}>{`date: ${post.postDate}`}</div>
-            <div className={styles["postList__content__post__author"]}>{`written by ${post.author}`}</div>
+            <div className={styles["postList__content__post__author"]}>{`written by ${post.postAuthor}`}</div>
           </div>
         ))}
       </div>

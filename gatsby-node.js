@@ -110,15 +110,15 @@ var get_postList_as_node = function(root, dir) {
             postExcerpt: get_excerpt(markdown),
             postLink: category+'/'+curr_file.split(".")[0]
           });
+        } else {
+          post_list.push({
+            postTitle: frontmatter.title !== undefined ? frontmatter.title : curr_file.split(".")[0],
+            postDate: frontmatter.date !== undefined ? frontmatter.date : 'once upon a time..',
+            postAuthor: frontmatter.author !== undefined ? frontmatter.author : 'anonymous',
+            postExcerpt: get_excerpt(markdown),
+            postLink: category+'/'+curr_file.split(".")[0]
+          });
         }
-        
-        post_list.push({
-          postTitle: frontmatter.title !== undefined ? frontmatter.title : curr_file.split(".")[0],
-          postDate: frontmatter.date !== undefined ? frontmatter.date : 'once upon a time..',
-          postAuthor: frontmatter.author !== undefined ? frontmatter.author : 'anonymous',
-          postExcerpt: get_excerpt(markdown),
-          postLink: category+'/'+curr_file.split(".")[0]
-        });
       };
     }
   });

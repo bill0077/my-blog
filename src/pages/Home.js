@@ -1,42 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
+import { Stage, PerspectiveCamera, CameraControls } from "@react-three/drei";
 
-import ContentsTree from "../components/ContentsTree";
+import Planet from "../components/Planet";
 
 import * as styles from "../styles/Home.module.css";
 
-/** 3D car model component used on the blog main page. 
-    Will be changed to an appropriate model later. */
-function CarModel(props) {
-  const { scene } = useGLTF(`${process.env.GATSBY_PUBLIC_URL}/models/bmw/bmw_m4_competition_m_package.glb`);
-  return <primitive object={scene} {...props} />
-}
+export default function Home() {
+  const cameraRef = useRef();
 
-/** Dummy table of contents component. 
-    To be modified later */
-function RecommendedList() {
-  return (
-    <div>
-      <div className={styles["recommendedList__title"]}>Recommended Posts</div>
-      <li className={styles["recommendedList__elem"]}>개발 블로그 개발기</li>
-      <li className={styles["recommendedList__elem"]}>테트리스 ai 개발기</li>
-      <li className={styles["recommendedList__elem"]}>PS: 백준(boj) 1234번 풀이 </li>
-    </div>
-  );
-}
-
-function Home() {
   return (
   <div className={styles["home"]}>
     <div className={styles["home__main"]}>
       <div className={styles["home__main__canvas"]}>
-        <Canvas dpr={[1,2]} shadows camera={{ fov: 45 }}>
-          <PresentationControls speed={0.5} global zoom={0.75} polar={[-Math.PI/8, Math.PI/4]}>
-            <Stage shadows={false} environment={null}>
-              <CarModel scale={0.012} />
-            </Stage>
-          </PresentationControls>
+        <Canvas dpr={[1,2]} shadows={false}>
+          <PerspectiveCamera ref={cameraRef} makeDefault fov={45} near={1} far={100000} position={[0, 500, 1000]} />
+          <CameraControls camera={cameraRef.current} minDistance={750} maxDistance={2500} azimuthRotateSpeed={0.3} polarRotateSpeed={0.5} dollySpeed={0.5} />
+          <Stage camera={cameraRef.current} preset={"soft"} shadows={false} adjustCamera={false}>
+            <Planet name={"bill0077"} link={`/`} filePath={"models/solarsystem/Earth.glb"} heightOffset={150} rotateSpeed={0.002} orbitRadius={0} orbitSpeed={0} defaultScale={15}/>
+            <Planet name={"my-blog"} link={`myblog-dev-log`} filePath={"models/solarsystem/Moon.glb"} heightOffset={150} rotateSpeed={0.025} orbitRadius={250} orbitSpeed={1} defaultScale={1.2}/>
+            <Planet name={"devops"} link={`devops`} filePath={"models/solarsystem/Jupiter.glb"} heightOffset={150} rotateSpeed={-0.01} orbitRadius={400} orbitSpeed={-0.5} defaultScale={0.6}/>
+            <Planet name={"etc"} link={`etc`} filePath={"models/solarsystem/Venus.glb"} heightOffset={150} rotateSpeed={0.02} orbitRadius={550} orbitSpeed={0.25} defaultScale={0.4}/>              
+            <Planet name={"etc"} link={`etc`} filePath={"models/solarsystem/Neptune.glb"} heightOffset={150} rotateSpeed={0.005} orbitRadius={650} orbitSpeed={0.05} defaultScale={1.75}/>
+            <Planet name={"etc"} link={`etc`} filePath={"models/solarsystem/Saturn.glb"} heightOffset={150} rotateSpeed={0} orbitRadius={800} orbitSpeed={-0.1} defaultScale={100}/>
+          </Stage>
         </Canvas>
       </div>
       <div className={styles["home__main__titleBox"]}>
@@ -46,16 +33,6 @@ function Home() {
         <a href="https://github.com/bill0077" target="_blank" rel="noreferrer noopener" className={styles["home__main__titleBox__contact"]}>https://github.com/bill0077</a>
       </div>
     </div>
-    <div className={styles["home__contents"]}>
-      <div className={styles["home__contents__categories"]}>
-        <ContentsTree />
-      </div>
-      <div className={styles["home__contents__recommended"]}>
-        <RecommendedList />
-      </div>
-    </div>
   </div>
   );
 }
-
-export default Home;

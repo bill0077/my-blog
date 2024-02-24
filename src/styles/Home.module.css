@@ -6,34 +6,41 @@
 }
 
 .home__main {
-  width: 70%;
+  width: 100vw;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background-image: linear-gradient(to top left, steelblue, cadetblue);
+  /*background-image: linear-gradient(to top left, steelblue, cadetblue);*/
+  background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
   box-shadow: 2vh 1vh 4vh 0vh gray;
 }
 
 .home__main__canvas {
-  width: 50vw;
-  height: 50vh;
+  position: fixed;
+  
+  width: 100vw;
+  height: 100vh;
 
   padding: 2vh;
 }
 
 .home__main__titleBox {
   width: 90%;
+  height: 90%;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
 }
 
 .home__main__titleBox__title {
+  z-index:1;
+
   font-family: "taebaek";
   font-size: 8vh;
   font-weight: bold;
@@ -45,6 +52,8 @@
 }
 
 .home__main__titleBox__subtitle {
+  z-index:1;
+
   font-family: "taebaek-milkyway";
   font-size: 5vh;
   font-weight: bold;
@@ -56,6 +65,8 @@
 }
 
 .home__main__titleBox__contact {
+  z-index:1;
+
   text-decoration-line: none;
 
   font-family: "Consolas", monospace;

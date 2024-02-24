@@ -45,7 +45,7 @@ npm run deploy
 ```
 배포에는 시간이 좀 걸리는데, 프로젝트의 github repository에서 `Deployments` 항목을 가보면 여태 진행한 deploy 기록과 현재 진행중인 deploy의 진행 상태를 확인할 수 있다. 
 <center>
-<img src="___MEDIA_FILE_PATH___/blog-deploying.png" width="100%" title="blog-deploying"/>
+<img src="./media/blog-deploying.png" width="100%" title="blog-deploying"/>
 </center>
 deploy가 완료되고 https://*githubusername*.github.io/*repositoryname* 로 접속해보면 정상적으로 페이지가 보이게 된다(만약 이 과정에서 흰 화면이나 에러가 발생하면 1. router의 basename 관련 문제인지 먼저 확인해보고, 2. hook 등에서 url을 올바르게 참조하고 있는지 확인해보자).
 

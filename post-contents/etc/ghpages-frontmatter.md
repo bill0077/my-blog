@@ -1,5 +1,5 @@
 ---
-title: "gh-pages에서 frontmatter에 의해 deploy가 안될 때"
+title: "gh-pages에서 frontmatter에 의해 deploy가 안되는 경우"
 date: "2024-02-19"
 author: "bill0077"
 ---

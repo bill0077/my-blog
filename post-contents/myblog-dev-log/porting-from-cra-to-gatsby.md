@@ -11,7 +11,7 @@ Git commit: https://github.com/bill0077/my-blog/commit/14ab068b6eef3a070698a9f77
 
 ## 404 File Not Found ??
 <center>
-<img src="___MEDIA_FILE_PATH___/routing-error.png" width="60%" title="routing-error"/>
+<img src="./media/routing-error.png" width="60%" title="routing-error"/>
 </center>
 
 앞서 말했듯이 본래는 BrowserRouter를 이용해 라우팅을 구현하려고 하였고, 실제로 BrowserRouter를 이용해 구현을 진행하였다. 이후 라우팅 기능이 정상 작동하는 것을 확인하고 deploy 하였지만, deploy된 결과물을 다시 한번 확인해보는 과정에서 문제점을 알게되었다.

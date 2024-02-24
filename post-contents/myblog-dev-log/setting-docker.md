@@ -91,7 +91,7 @@ docker build -f Dockerfile -t myblog-docker .
 "docker build -f **도커_파일_이름** -t **만들어질_이미지_이름** **필요한_파일의_상대위치**" 의 형식에 맞춰 명령을 실행해주면 된다. 여기서는 image 이름을 myblog-docker로 지정하고 파일 위치는 현재 디렉토리임으로 위와 같은 명령을 실행하였다. 그러면 아래처럼 로그를 뿜으면서 이미지를 생성하게 된다.
 
 <center>
-<img src="___MEDIA_FILE_PATH___/docker_building.png" width="80%" title="docker-building"/>
+<img src="./media/docker_building.png" width="80%" title="docker-building"/>
 </center>
 
 react app의 경우 `npm start` 명령어로 실행하게 되면 기본적으로 3000번 포트에서 실행된다. 그러므로 완성된 이미지를 -p 옵션으로 호스트의 포트 3000과 컨테이너의 포트 3000 간에 매핑을 생성하고 실행해보자. 이후 호스트의 브라우저에서 http://localhost:3000을 열어 확인해 보면 잘 실행되는 것을 알 수 있다.

@@ -59,7 +59,7 @@ export default App;
 
 `npm start`로 실행후 확인해보면 아래와 같은 결과를 볼 수 있다 🎉
 <center>
-<img src="___MEDIA_FILE_PATH___/3d_rendering_test.png" width="100%" title="3d-rendering-test"/>
+<img src="./media/3d_rendering_test.png" width="100%" title="3d-rendering-test"/>
 </center>
 현재 모델링에 Stage의 그림자가 보이고 마우스로 모델링을 드래그해보면PresentationControls가 적용돼 모델링이 드래그하는대로 회전하는 것을 확인할 수 있다. 
 
@@ -89,25 +89,25 @@ my-blog
 ```
 간단히 메인 문구도 넣어주고, 폰트도 넣어서 꾸며보았다. /src/assets에 fonts 폴더를 만들어 폰트를 추가했다. (눈누라는 폰트 사이트에서 무료로 웹사이트에 배포 가능한 다양한 무료 폰트를 ttf 폰트 파일로 받을 수 있다. 나는 태백체와 태백은하수체를 이용했다. 눈누: https://noonnu.cc/#google_vignette)
 <center>
-<img src="___MEDIA_FILE_PATH___/blog_home_decorating.png" width="100%" title="blog-home-decorating"/>
+<img src="./media/blog_home_decorating.png" width="100%" title="blog-home-decorating"/>
 </center>
 
 ### 목차
 메인 화면의 오른쪽에 목차를 넣어주면 괜찮을거 같다. 목차를 어떻게 표현할까 고민하다 블로그 내부의 글들도 폴더같은 트리 구조를 이루고 있으므로 목차를 폴더구조처럼 보이도록 꾸며주었다. 일단 느낌을 확인해보기 위해 실제 작동되는 목차는 아니지만 dummy로 목차를 추가해주었다.
 <center>
-<img src="___MEDIA_FILE_PATH___/blog_contents_decorating.png" width="100%" title="blog-contents-decorating"/>
+<img src="./media/blog_contents_decorating.png" width="100%" title="blog-contents-decorating"/>
 </center>
 
 ### 부가 공간
 현재 메인 화면과 목차를 제외하면 우하단에 조그마한 공간이 하나 남게 된다. 이곳은 임시로 추천 글들을 보여주기로 하였다. 목차와 마찬가지로 일단 dummy로 글 제목만 넣어주었다.
 <center>
-<img src="___MEDIA_FILE_PATH___/blog_recommend_decorating.png" width="100%" title="blog-recommend-decorating"/>
+<img src="./media/blog_recommend_decorating.png" width="100%" title="blog-recommend-decorating"/>
 </center>
 
 ### 마무리
 여기까지 완성하니 그럴싸한 홈 페이지가 하나 만들어진 것 같다. 간단하게 css로 그라데이션과 그림자를 추가해서 홈을 마무리해보자.
 <center>
-<img src="___MEDIA_FILE_PATH___/blog_finish_decorating.png" width="100%" title="blog-finish-decorating"/>
+<img src="./media/blog_finish_decorating.png" width="100%" title="blog-finish-decorating"/>
 </center>
 
 이렇게 해서 간단히 블로그 홈을 만들어 주었다. 아직 뜬금없는 차 모델링도 나를 표현할 수 있는 다른 모델로 변경해야 하고 색상이나 꾸밈새도 더 손볼곳이 많지만, 일단 홈은 여기서 마무리하고 우선 필수적인 기능부터 추가해주도록 하겠다.

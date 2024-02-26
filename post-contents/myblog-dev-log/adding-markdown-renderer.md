@@ -65,7 +65,7 @@ export default function MarkdownRenderer({ markdown }) {
         remarkFrontmatter // enables frontmatter
       ]} 
       rehypePlugins={[rehypeRaw]} // enables html tags inside markdown file
-      components={{
+      components={% raw %}{{
         code(props) { // apply syntax highlighting inside code blocks
           const {children, className, node, ...rest} = props
           const match = /language-(\w+)/.exec(className || '') // find matching language
@@ -83,7 +83,7 @@ export default function MarkdownRenderer({ markdown }) {
             </code>
           )
         }
-      }}>
+      }}{% endraw %}>
       {markdown}
     </Markdown>
   );

@@ -1,5 +1,5 @@
 ---
-title: "개발 블로그 개발기 - 7. Post 페이지 만들기"
+title: "개발 블로그 개발기 - 7. react-markdown을 이용해 Post 페이지 제작"
 date: "2024-02-14"
 author: "bill0077"
 ---
@@ -18,13 +18,13 @@ Gatsby를 이용해 라우팅을 구현하며 Post 컴포넌트가 마크다운 
 ### react-markdown
 결론적으로 `gatsby-transformer-remark`를 제외하고 react에서 마크다운을 렌더링하는 방법을 찾아보았을 때 자주 사용되면서 최근까지도 업데이트가 계속된 `react-markdown`이라는 패키지를 사용하기로 결정하였다. npm trends를 보면 지난 1년간 다운로드 수가 관련 패키지 중 가장 많은 것을 확인할 수 있다.
 <center>
-<img src="media/react_markdown_downloads.png" width="100%" title="3d-rendering-test"/>
+<img src="___MEDIA_FILE_PATH___/react_markdown_downloads.png" width="100%" title="3d-rendering-test"/>
 </center>
 
 설치하기 이전에 Github의 소개글을 읽어보자
 > This package is a React component that can be given a string of markdown that it’ll safely render to React elements.
 
-즉 `reat-markdown`은 string을 마크다운 문법에 맞추어 react component로 렌더링 해주는 패키지이다. 설치 과정에서 어차피 gfm과 syntax highlighting까지 이용할 것이기 때문에 관련 패키지들도 함께 설치했다.
+즉 `react-markdown`은 string을 마크다운 문법에 맞추어 react component로 렌더링 해주는 패키지이다. 설치 과정에서 어차피 gfm과 syntax highlighting까지 이용할 것이기 때문에 관련 패키지들도 함께 설치했다.
 ```cmd
 npm install react-markdown
 ```
@@ -89,46 +89,47 @@ export default function MarkdownRenderer({ markdown }) {
   );
 }
 ```
+
+#### remarkPlugin 
 일단 기본적인 렌더링에 더해 GFM을 사용할 수 있도록 remarkPlugin에 `remarkGfm`을, 또 추후에 frontmatter을 이용해 제목이나 저자 등을 지정할 것이므로 `remarkFrontmatter` 플러그인을 추가해주었다 (react-markdown에서 활용 가능한 플러그인은 https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins에서 확인 가능하다).
 ```cmd
 npm install remark-gfm
 npm install react-syntax-highlighter
 ```
 
-또한 기본적으로 react-markdown에서는 HTML 태그가 있으면 바로 건너뛰는데, 이러면 마크다운 내부에서 `<center>`과 같은 정렬이 불가능하고 `img` 태그 또한 모든 설정을 다시 해줘야 한다. 그러므로 HTML 태그를 그대로 해석하기 위해 rehypePlugins에 `rehypeRaw`를 추가해주었다 **(⚠️react-markdown은 안전한 렌더링을 위해 마크다운 내부 HTML을 불허하는 것을 지향한다. 마크다운을 신뢰할 수 있는 경우에만 해당 플러그인을 활용하는 것을 추천한다⚠️).**
+#### rehypePlugin
+아래는 `remarkPlugin`까지 적용한 이후 react-markdown을 이용해 렌더링을 하기 전과 후의 차이이다
+<center>
+<img src="___MEDIA_FILE_PATH___/before_md_rendering.png" width="40%" title="routing-error"/>
+<img src="___MEDIA_FILE_PATH___/after_md_rendering.png" width="40%" title="routing-error"/>
+</center>
+
+그런데 렌더링을 적용한 경우에도 img 태그가 제대로 적용되지 않고 텍스트 그대로 나온 것을 볼 수 있는데, 이는 react-markdown의 기본 설정 때문이다. 기본적으로 react-markdown에서는 HTML 태그가 있으면 바로 `skipHtml`을 이용해 건너뛰는데, 이러면 마크다운 내부에서 `<center>`과 같은 태그를 활용해 정렬이 불가능하고 `img` 태그 또한 모든 인자에 대한 설정을 추가해줘야 한다. 그러므로 HTML 태그를 그대로 해석하는 것을 허용하기 위해 rehypePlugins에 `rehypeRaw`를 추가해주었다 **(⚠️react-markdown은 안전한 렌더링을 위해 마크다운 내부 HTML을 불허하는 것을 지향한다. 마크다운을 신뢰할 수 있는 경우에만 해당 플러그인을 활용하는 것을 추천한다⚠️).**
 ```cmd
 npm install rehype-raw
 ```
 
 이후 `code`라는 컴포넌트에서 syntax highlighting이 가능하도록 추가해주면 (react-markdown의 예제 코드 참고) 기본적인 작업이 모두 종료된다.
 
-<br>
+### 이미지 처리
+아직 문제가 있는데, 마크다운 내부 img 등 태그의 src는 개발 환경과 배포 환경에서 동일하게 사용하는 것이 불가능하다는 것이다. 링크의 url을 폴더 구조 그대로 사용하는 것이 아니기 때문에 상대경로를 이용한 참조 또한 불가능하다. 결론적으로 마크다운 내부에 이미지 파일 경로를 변수로 설정하고 개발 환경인지 배포 환경인지에 따라 이 변수를 다르게 설정해야 한다는 것인데, 이는 마크다운 내부의 문법으로는 불가능하다. 
 
-**P.S.**
-공식 docs에서 Markdown을 사용하라는 것과는 다르게 다른 블로그 글들을 보면 ReactMarkdown이라는 이름의 컴포넌트를 사용하는 경우가 굉장히 많은데, git history를 뒤져보니 이는 컴포넌트 이름이 계속 변경되어서 그렇다. ReactMarkdown이라는 이름은 6.0.0 ~ 9.0.0 사이 버전에서 잠깐 사용되다가 약 5개월 전(Sep 27, 2023에 commit) 9.0.0 버전에서 다시 Markdown을 사용하도록 리팩토링 되었다. 왜 이름이 다시 롤백되었는지 명확한 이유는 모르겠으나 어쨌든 두 이름 모두 확인한 범주 이내에서는 정상적으로 동작하므로 큰 문제는 없을 것 같다.
-
-
-
-기본적인 Markdown에서 syntax highlighting과 여러 기능들을 추가하여 MarkdownRenderer이라는 컴포넌트를 만들어 추가해주자.
-
-
-아래는 각각 react-markdown을 적용해 렌더링을 하기 전과 후의 차이이다
-<center>
-<img src="./media/before_md_rendering.png" width="40%" title="routing-error"/>
-<img src="./media/after_md_rendering.png" width="40%" title="routing-error"/>
-</center>
-
-그런데 렌더링을 적용한 경우에도 img 태그가 제대로 적용되지 않고 텍스트 그대로 나온 것을 볼 수 있다. 이는 react-markdown의 기본 행동 때문인데, markdown 안에서의 html 사용을 최대한 지양하고자 react-markdown에서는 html을 `skipHtml`을 이용해 해석하지 않도록 행동하게 되어있다. 하지만 만일 해당 마크다운을 신뢰한다면 `rehype-raw`을 이용해 다시 허용해 주는 것이 가능하다. 더 자세한 설명은 각 github repo의 README를 확인해보자. rehype-new를 사용하면 img 태그와 center 등의 태그를 사용하는 것이 가능해진다.
-
-```cmd
-npm install rehype-raw
+이를 해결하기 위해 간단하게 placeholder를 이용하기로 하였다. `___MEDIA_FOLDER_PATH___` 의 형식으로 해당 마크다운이 참조하는 이미지 파일들의 폴더 위치를 지정한 상태에서 마크다운을 작성한 뒤 글 페이지 컴포넌트(Post.js)에서 마크다운을 렌더링하기 이전에 해당 placeholder를 환경에 맞는 값으로 치환해 주었다.
+```html
+<!--placeholder example-->
+<img src="___MEDIA_FILE_PATH___/image_resolved.png" width="100%" title="image_resolved"/>
 ```
 
-rehype 플러그인에 추가해주자. 하지만 아직 문제가 있는데, 마크다운 파일 내부 img 태그의 src는 기존의 local을 기준으로 작성되어 배포 환경에선 불가능하다는 것이다. 이를 위해 간단하게 placeholder를 이용하기로 하였다. ___ VARNAME ___ 의 형식으로 마크다운을 작성한 뒤 Post.js에서 해당 placeholder를 환경에 맞는 값으로 치환한 후 마크다운으로 활용하였다.
-
+### 결과물
+최종적으로 렌더링된 결과는 아래와 같다. 폰트나 인용문 등은 추후에 더 가독성 있도록 꾸며주도록 하겠다.
 <center>
-<img src="./media/image_resolved.png" width="100%" title="image_resolved"/>
+<img src="___MEDIA_FILE_PATH___/image_resolved.png" width="100%" title="image_resolved"/>
 </center>
+
+<br>
+<br>
+
+**P.S.** 공식 docs에서 Markdown을 사용하라는 것과는 다르게 다른 블로그 글들을 보면 ReactMarkdown이라는 이름의 컴포넌트를 사용하는 경우가 굉장히 많은데, git history를 뒤져보니 이는 컴포넌트 이름이 계속 변경되어서 그렇다. ReactMarkdown이라는 이름은 6.0.0 ~ 9.0.0 사이 버전에서 잠깐 사용되다가 약 5개월 전(Sep 27, 2023에 commit) 9.0.0 버전에서 다시 Markdown을 사용하도록 리팩토링 되었다. 왜 이름이 다시 롤백되었는지 명확한 이유는 모르겠으나 어쨌든 두 이름 모두 확인한 범주 이내에서는 정상적으로 동작하므로 큰 문제는 없을 것 같다.
 
 ## reference
 remarkjs, react-markdown : https://github.com/remarkjs/react-markdown
@@ -136,5 +137,3 @@ remarkjs, react-markdown : https://github.com/remarkjs/react-markdown
 npm trends, react-markdown vs remark vs remark-react: https://npmtrends.com/react-markdown-vs-remark-vs-remark-react
 
 mia.log, react-markdown 사용하기: https://velog.io/@mia/react-markdown-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
-
-https://www.jamesqquick.com/blog/multiple-datasets-with-gatsby-source-filesystem/

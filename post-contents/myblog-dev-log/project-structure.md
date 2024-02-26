@@ -35,6 +35,7 @@ my-blog
   ├── package.json
   └── README.md
 ```
+
 **전체 구조**
 - `node_modules`: 프로젝트에 포함된 라이브러리. Github같은 저장소에는 이 폴더를 올리지 않음. package.json같은 파일을 확인하며 구성이 가능하기 때문.
 

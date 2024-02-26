@@ -1,5 +1,5 @@
 ---
-title: "개발 블로그 개발기 - 6. CRA에서 Gatsby로 Porting & routing 기능 구현하기"
+title: "개발 블로그 개발기 - 6. CRA에서 Gatsby로 Porting & routing 기능 구현"
 date: "2024-02-05"
 author: "bill0077"
 ---
@@ -11,7 +11,7 @@ Git commit: https://github.com/bill0077/my-blog/commit/14ab068b6eef3a070698a9f77
 
 ## 404 File Not Found ??
 <center>
-<img src="./media/routing-error.png" width="60%" title="routing-error"/>
+<img src="___MEDIA_FILE_PATH___/routing-error.png" width="60%" title="routing-error"/>
 </center>
 
 앞서 말했듯이 본래는 BrowserRouter를 이용해 라우팅을 구현하려고 하였고, 실제로 BrowserRouter를 이용해 구현을 진행하였다. 이후 라우팅 기능이 정상 작동하는 것을 확인하고 deploy 하였지만, deploy된 결과물을 다시 한번 확인해보는 과정에서 문제점을 알게되었다.
@@ -116,6 +116,7 @@ exports.createPages = ({ actions }) => {
   })
 }
 ```
+
 `gatsby-node.js` 파일 내부에는 `createPages` 함수를 구현하게 된다. `gatsby-node.js`는 프로젝트가 빌드되면 자동으로 실행되어, `createPages`가 미리 페이지들을 렌더링하게 된다. `createPages`는 매개변수로 1개의 object를 사용하는데 이 object는 라우팅 될 경로를 지정하는 `path`, 템플릿이 될 컴포넌트를 지정하는 `component`, 해당 컴포넌트가 내용으로 사용할 `context`를 멤버로 가지고 있어야 한다. 위의 `createPages` 함수를 보면 /posts/:postTitle의 경로에 /src/templates/Post.js의 컴포넌트를 템플릿으로 사용하는 것을 알 수 있다. `get_mdfiles_as_node`은 내가 직접 구현한 함수로, `get_mdfiles_as_node`가 반환할 결과의 예시는 아래와 같다. 
 ```js
 const mdfiles_as_node = [
@@ -124,6 +125,7 @@ const mdfiles_as_node = [
   {postTitle: "myblog-dev-log_2", filePath: "post-contents/myblog-dev-log/myblog-dev-log_2.md" }
 ]
 ```
+
 마크다운을 기반으로 포스팅을 만들 것이기 때문에 /post-contents 폴더에서 .md 파일들을 찾아 이름과 경로를 `context`로 사용할 수 있도록 해주었다. 이 방법이 아니라 local의 마크다운이 아니라 GraphQL, DB를 사용하는 방법도 가능할 것이다. 이후 Post.js에서 `pageContext`를 props로 받아와서 사용하도록 구성하면 된다. 구현한 Post.js는 아래와 같다.
 ```js
 // Post.js

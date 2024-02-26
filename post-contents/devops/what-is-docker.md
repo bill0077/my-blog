@@ -13,8 +13,9 @@ Docker helps developers build, share, run, and verify applications anywhere — 
 
 Docker 공식 문서에서 말하듯이 Docker는 제품을 빌드, 공유, 실행하는 것을 도와주는 도구이다. 왜 이러한 과정이 필요할까?
 <center>
-<img src="./media/it_works_on_my_computer.png" width="50%" title="docker-building"/>
+<img src="___MEDIA_FILE_PATH___/it_works_on_my_computer.png" width="50%" title="docker-building"/>
 </center> 
+
 어플리케이션을 실행하려면 개발환경과 배포환경이 필요하다. 만일 A가 잘 작동하는 서버를 만들어놓았고, 서버 증설 등의 이유로 B가 그 서버를 똑같이 따라한다고 해보자. B가 A의 서버와 운영체제, 컴파일러, 패키지 등을 모두 동일하게 맞추기 위해서는 굉장한 노력을 들여야할 것이다. 이는 A가 시간이 지나고 다시 동일한 서버를 구성하려고 해도 마찬가지로 발생하는 상황이다. 이러한 과정에서 원본과는 조금씩 다른 서버들, 즉 *눈송이 서버*(눈송이가 모두 서로 다른 모양이듯이)들이 발생하게 되고, 초기에는 큰 문제가 없었더라도 시간이 지나면 눈송이가 불어나 어떤 문제를 야기할지 모르는 상태가 되는 것이다.
 
 이러한 문제를 해결하기 위해 다양한 방법들이 제안되었고, 현재 산업에서의 표준이 바로 Docker이다. 우리는 Docker를 활용함으로써 서버마다 완전히 동일한 환경을 구성하고, 언제 구성한 서버라도 멱등성(동일한 요청에 의해 여러 번 연산을 수행하더라도 동일한 결과를 나타내는 것을 의미)을 확보할 수 있게 된다.

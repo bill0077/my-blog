@@ -9,5 +9,6 @@ Gatsby가 갑자기 build가 안될 때: https://github.com/gatsbyjs/gatsby/issu
 ```cmd
 npm rebuild --update-binary
 ```
+
 실행 이후 다시 build 해주면 되는 경우가 많다.
 (build는 잘 되는데 deploy 안되는 경우에도 마찬가지)

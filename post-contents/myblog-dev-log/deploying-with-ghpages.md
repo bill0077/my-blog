@@ -1,5 +1,5 @@
 ---
-title: "개발 블로그 개발기 - 5. gh-pages를 이용해 배포하기"
+title: "개발 블로그 개발기 - 5. gh-pages를 이용한 배포"
 date: "2024-01-27"
 author: "bill0077"
 ---
@@ -14,6 +14,7 @@ Git commit: https://github.com/bill0077/my-blog/commit/a4caf9649ed720325f94819fa
 ```cmd
 npm run build
 ```
+
 이때 접속 주소는 https://*githubusername*.github.io 로 정해진다. 이 방법은 주로 완성된 프로젝트를 간단히 배포할 때 사용하거나, 추후 프로젝트를 수정할 일이 별로 없을 때 사용한다.
 
 ### gh-pages를 이용해 배포하기
@@ -25,6 +26,7 @@ repostiory 연동을 완료하고 배포할 준비가 되었다면 먼저 gh-pag
 ```cmd
 npm install --save gh-pages
 ```
+
 이후 package.json을 수정해 주어야 한다. homepage라는 항목을 추가하고 나의 프로젝트를 주소를 입력해준다. https://*githubusername*.github.io/*repositoryname* 의 형식에 맞춰주면 된다(gh-pages를 이용해도 https://*githubusername*.github.io 과 같은 user page로 배포가 가능하다. 만일 https://*githubusername*.github.io 의 이름을 쓰고 싶다면 reference의 react 공식 홈을 참고해 조금만 수정하면 된다).
 ```js
 // package.json
@@ -39,18 +41,20 @@ npm install --save gh-pages
     "start": "react-scripts start",
       ⋮
 ```
+
 이후 `npm run build`를 실행해 배포를 진행할 수 있다. 
 ```cmd
 npm run deploy
 ```
+
 배포에는 시간이 좀 걸리는데, 프로젝트의 github repository에서 `Deployments` 항목을 가보면 여태 진행한 deploy 기록과 현재 진행중인 deploy의 진행 상태를 확인할 수 있다. 
 <center>
-<img src="./media/blog-deploying.png" width="100%" title="blog-deploying"/>
+<img src="___MEDIA_FILE_PATH___/blog-deploying.png" width="100%" title="blog-deploying"/>
 </center>
+
 deploy가 완료되고 https://*githubusername*.github.io/*repositoryname* 로 접속해보면 정상적으로 페이지가 보이게 된다(만약 이 과정에서 흰 화면이나 에러가 발생하면 1. router의 basename 관련 문제인지 먼저 확인해보고, 2. hook 등에서 url을 올바르게 참조하고 있는지 확인해보자).
 
-***P.S.***
-배포 과정에서 url을 잘못 입력하거나 실패하는 등의 문제가 생기면 아래와 같은 방법으로 deploy를 초기화하고 다시 진행할 수 있다. 나의 경우 무작정 gh-pages branch를 지우자 에러가 발생해서 초기화를 진행했다. 
+***P.S.*** 배포 과정에서 url을 잘못 입력하거나 실패하는 등의 문제가 생기면 아래와 같은 방법으로 deploy를 초기화하고 다시 진행할 수 있다. 나의 경우 무작정 gh-pages branch를 지우자 에러가 발생해서 초기화를 진행했다. 
 
 우선 package.json에서
 ```js

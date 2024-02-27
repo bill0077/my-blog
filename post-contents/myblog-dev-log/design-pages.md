@@ -25,7 +25,7 @@ Git commit: https://github.com/bill0077/my-blog/commit/4ea24be5a6a5fa315747293e0
 ```js
 // markdown renderer custom components example
 <Markdown
-  components={{
+  components={% raw %}{{
     // Map `h1` (`# heading`) to use `h2`s.
     h1: 'h2',
     // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
@@ -33,7 +33,7 @@ Git commit: https://github.com/bill0077/my-blog/commit/4ea24be5a6a5fa315747293e0
       const {node, ...rest} = props
       return <i style={{color: 'red'}} {...rest} />
     }
-  }}
+  }}{% endraw %}
 />
 ```
 

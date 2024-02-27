@@ -9,15 +9,19 @@
 
   position: fixed;
 
-  box-shadow: 2vh 1vh 4vh 0vh gray;
+  /*background-color: rgb(40, 40, 40);*/
+  background-image: linear-gradient(to top left, rgb(47, 116, 119), cadetblue);
+  background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
+  border-right-style: inset;
+  border-color: white;
 }
 
 .navigator__title {
-  color: black;
+  color: white;
   text-decoration: none;
   
   font-family: "taebaek";
-  font-size: 3vh;
+  font-size: 5vh;
   font-weight: bold;
 
   padding-top: 1vh;

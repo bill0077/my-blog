@@ -1,6 +1,17 @@
 .postList {
+  width: 100%;
+
   display: flex;
   justify-content: space-between;
+}
+
+.postList__background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+
+  background-color: #181818;
+  z-index: -1;
 }
 
 .postList__category {
@@ -8,58 +19,64 @@
   font-size: 5vh;
   font-weight: bold;
 
-  margin-left: 25%;
+  margin-left: 30%;
   padding-left: 2vw;
   padding-top: 5vh;
   padding-bottom: 5vh;
 
   position: fixed;
-  background-color : rgb(255,255,255,0.9);
-  border-bottom-style: solid;
+  
+  color:white;
+  background-color: #181818;
 }
 
 .postList__content {
-  width: 100vw;
+  width: 50%;
 
-  margin-top: 15vh;
+  margin-top: 20vh;
 
   align-items: center;
   align-content: center;
 
-  margin-left: 25%;
+  margin-left: 30%;
 }
 
 .postList__content__post {
+  width: 95%;
   margin-left: 1.5vw;
 
   padding-top: 3vh;
   padding-bottom: 3vh;
   border-bottom-style: solid;
-  border-bottom-color: lightgray;
+  border-bottom-color: #404040;
+  color: #D0D0D0;
 }
 
 .postList__content__post__title {
-  color: black;
+  color: white;
   text-decoration: none;
   
-  font-size: 3vh;
+  font-size: 2.5vh;
   font-weight: bold;
 }
 
 .postList__content__post__excerpt {
   font-size: 2vh;
   font-weight: normal;
+  line-height: 160%;
 
-  padding-top: 1vh;
-  padding-bottom: 1vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
 
 .postList__content__post__date {
   font-size: 2vh;
   font-weight: normal;
+  text-align: end;
 }
 
 .postList__content__post__author {
   font-size: 2vh;
   font-weight: normal;
+  text-align: end;
 }

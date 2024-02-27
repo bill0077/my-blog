@@ -1,6 +1,6 @@
 /** Simple function to get YAML frontmatter markdown.
     Return parsed object when success.
-    Return undefined when there is no frontmatter for parsing is failed. */
+    Return undefined when there is no frontmatter or parsing is failed. */
 var get_yaml_frontmatter = function(markdown) {
   markdown = markdown.trim();
   if (!markdown.startsWith('---') || !markdown.indexOf('---', 3)) { // check if markdown has frontmatter

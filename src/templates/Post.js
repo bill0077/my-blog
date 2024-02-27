@@ -39,10 +39,12 @@ export default function Post({ pageContext }) {
     <div className={styles["post"]}>
       <Navigator />
       <div className={styles["post__content"]}>
-        <div className={styles["post__content__title"]}>{pageContext.postTitle}</div>
-        <div className={styles["post__content__date"]}>{`date: ${pageContext.postDate}`}</div>
-        <div className={styles["post__content__author"]}>{`written by ${pageContext.postAuthor}`}</div>
-        <MarkdownRenderer text={postContent} />
+        <div className={styles["post__content__markdown"]}>
+          <div className={styles["post__content__markdown__title"]}>{pageContext.postTitle}</div>
+          <div className={styles["post__content__markdown__author"]}>{`written by ${pageContext.postAuthor}`}</div>
+          <div className={styles["post__content__markdown__date"]}>{`date: ${pageContext.postDate}`}</div>
+          <MarkdownRenderer markdown={postContent} />
+        </div>
       </div>
     </div>
   );

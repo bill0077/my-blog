@@ -14,9 +14,9 @@
   justify-content: center;
   align-items: center;
 
-  /*background-image: linear-gradient(to top left, steelblue, cadetblue);*/
-  background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
-  box-shadow: 2vh 1vh 4vh 0vh gray;
+  background-color:black;
+  /*background-image: linear-gradient(to top left, steelblue, cadetblue);
+  */background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
 }
 
 .home__main__canvas {
@@ -39,6 +39,14 @@
 }
 
 .home__main__titleBox__title {
+  z-index: 1;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home__main__titleBox__title__text {
   z-index:1;
 
   font-family: "taebaek";
@@ -49,6 +57,42 @@
   padding-bottom: 1vh;
 
   color: white;
+}
+
+.home__main__titleBox__title__text__vibration {
+  z-index:1;
+
+  font-family: "taebaek";
+  font-size: 8vh;
+  font-weight: bold;
+
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+
+  color: white;
+
+  animation: vibration .1s infinite;
+}
+
+@keyframes vibration {
+  from {
+    transform: rotate(1deg);
+  }
+  to {
+    transform: rotate(-1deg);
+  }
+}
+
+.home__main__titleBox__title__contentsTree {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s ease, opacity 0.5s ease-in;
+}
+
+.home__main__titleBox__title:hover > .home__main__titleBox__title__contentsTree {
+  opacity: 1;
+  height: 55vh;
 }
 
 .home__main__titleBox__subtitle {

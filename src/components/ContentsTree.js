@@ -8,7 +8,6 @@ import * as styles from "../styles/ContentsTree.module.css";
 export default function ContentsTree() {
   return (
     <div>
-      <div className={styles["contentsTree__leaf"]}>Posts</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;├── PersonalHistory</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│</div>

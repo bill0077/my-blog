@@ -15,9 +15,9 @@ function MainCanvas() {
     <Canvas dpr={[1,2]} shadows={false}>
       <SpotLight position={[0, 500, 1000]} angle={0.3} penumbra={0.1} />
       <PerspectiveCamera ref={cameraRef} makeDefault fov={45} near={1} far={10000} position={[-200, 500, 1500]} />
-      <CameraControls camera={cameraRef.current} minPolarAngle={Math.PI/3} maxPolarAngle={Math.PI*2/3} minDistance={750} maxDistance={1500} azimuthRotateSpeed={0.3} polarRotateSpeed={0.5} dollySpeed={0.5} />
+      <CameraControls camera={cameraRef.current} truckSpeed={0} minPolarAngle={Math.PI/3} maxPolarAngle={Math.PI*2/3} minDistance={750} maxDistance={1500} azimuthRotateSpeed={0.3} polarRotateSpeed={0.5} dollySpeed={0.5} />
       <Stage camera={cameraRef.current} preset={"soft"} intensity={5} shadows={false} adjustCamera={false}>
-        <FallingObjects objectList={HomeObjectList()} fallLimitHeight={-2000}/>
+        <FallingObjects objectList={HomeObjectList()} fallLimitHeight={-3000}/>
       </Stage>
     </Canvas>
   );

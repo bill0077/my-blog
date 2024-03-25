@@ -11,16 +11,16 @@ export default function FallingObjects(props) {
   });
   const objectState = useRef({
     isFalling: false,
-    speed: [0, -30, 0],
+    speed: [0, -1500, 0],
     rotation: [0, 0, 0]
   });
 
   const handleClick = () => { clickCount.current += 1; }
  
   const objectRef = useRef();
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (objectRef.current) {
-      const G = 1;
+      const G = 3000;
       
       // set initial position
       if (!objectState.current.isFalling) {
@@ -35,20 +35,20 @@ export default function FallingObjects(props) {
 
       // when clicked, the object starts falling at a random initial speed.
       if (clickCount.current === 1) {
-        objectState.current.speed = [(Math.random()-0.5)*20, 20+Math.random()*10, (Math.random()-0.5)*20];
-        objectState.current.rotation = [(Math.random()-0.5)/30, (Math.random()-0.5)/30, (Math.random()-0.5)/30];
+        objectState.current.speed = [(Math.random()-0.5)*1000, 750+Math.random()*500, (Math.random()-0.5)*1000];
+        objectState.current.rotation = [(Math.random()-0.5)*1.5, (Math.random()-0.5)*1.5, (Math.random()-0.5)*1.5];
         clickCount.current += 1;
       }
 
       // objects fall according to basic laws of physics until they hit the ground or clicked
       if (clickCount.current > 0 || clickCount.current === 0 && objectRef.current.position.y > objectOffset.current.groundHeight) {
-        objectRef.current.position.x += objectState.current.speed[0];
-        objectRef.current.position.y += objectState.current.speed[1];
-        objectRef.current.position.z += objectState.current.speed[2];
+        objectRef.current.position.x += objectState.current.speed[0] * delta;
+        objectRef.current.position.y += objectState.current.speed[1] * delta;
+        objectRef.current.position.z += objectState.current.speed[2] * delta;
         
-        objectRef.current.rotation.x += objectState.current.rotation[0];
-        objectRef.current.rotation.y += objectState.current.rotation[1];
-        objectRef.current.rotation.z += objectState.current.rotation[2];
+        objectRef.current.rotation.x += objectState.current.rotation[0] * delta;
+        objectRef.current.rotation.y += objectState.current.rotation[1] * delta;
+        objectRef.current.rotation.z += objectState.current.rotation[2] * delta;
       }
 
       // get next object after previos object reaches fall limit height
@@ -66,10 +66,10 @@ export default function FallingObjects(props) {
 
         clickCount.current = 0;
         objectState.current.rotation = [0, 0, 0];
-        objectState.current.speed = [0, -30, 0];
+        objectState.current.speed = [0, -1500, 0];
         objectState.current.isFalling = false;
       }
-      objectState.current.speed[1] = objectState.current.speed[1] - G;
+      objectState.current.speed[1] -= G * delta;
     }
   });
 

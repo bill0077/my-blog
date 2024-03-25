@@ -15,8 +15,8 @@
   align-items: center;
 
   background-color:black;
-  /*background-image: linear-gradient(to top left, steelblue, cadetblue);
-  */background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
+  /*background-image: linear-gradient(to top left, steelblue, cadetblue);*/
+  background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
 }
 
 .home__main__canvas {

@@ -58,7 +58,7 @@ export default function MarkdownRenderer({ markdown }) {
 
         a(props) {
           const {children, ...rest} = props;
-          return <p style={{color: "cadetblue", display: "inline"}} {...rest}>{children}</p>
+          return <a to={children} style={{color: "cadetblue", display: "inline"}} {...rest}>{children}</a>
         },
 
         li(props) {

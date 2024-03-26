@@ -1,19 +1,13 @@
 .navigator {
-  width: 25%;
-  height: 100vh;
+  padding-left: 2vw;
+  padding-top: 2vh;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 
   position: fixed;
-
-  /*background-color: rgb(40, 40, 40);*/
-  background-image: linear-gradient(to top left, rgb(47, 116, 119), cadetblue);
-  background-image: linear-gradient(to top left, rgb(40, 40, 60), rgb(0, 0, 20));
-  border-right-style: inset;
-  border-color: white;
 }
 
 .navigator__title {

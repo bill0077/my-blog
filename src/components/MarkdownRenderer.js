@@ -9,7 +9,6 @@ import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 /** Renderer component that converts text into a React component according to Markdown format. */
 export default function MarkdownRenderer({ markdown }) {
   return (
-    <div style={{backgroundColor: "#181818"}}>
     <Markdown 
       remarkPlugins={[
         remarkGfm, // enables GFM extensions
@@ -97,6 +96,5 @@ export default function MarkdownRenderer({ markdown }) {
       }}>
       {markdown}
     </Markdown>
-    </div>
   );
 }

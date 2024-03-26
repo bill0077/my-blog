@@ -25,6 +25,7 @@ var get_excerpt = function(markdown) {
 }
 
 /** A function that converts all markdown files in a given folder into a list of Gatsby nodes.
+    markdown: markdown content of the post.
     postTitle: title of the post.
     postDate: date of the post.
     postAuthor: author of the post.
@@ -61,6 +62,7 @@ var get_post_as_node = function(root, dir) {
         }
         
         results.push({
+          markdown: markdown,
           postTitle: title,
           postDate: date,
           postAuthor: author,

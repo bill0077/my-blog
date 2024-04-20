@@ -39,11 +39,11 @@ input data가 입력되기 시작하는 input embedding 지점부터 살펴보�
 
 positional encoding은 각 문장에서 token의 순서와 각 token별 embedding vector의 각 원소의 순서 depth에 따른 함수이다. 이때 depth의 홀짝성에 따라 적용되는 함수의 형태가 약간 다르다.
 
-$$PE(pos, depth)=
+$PE(pos, depth)=
 \begin{cases}
 \sin\frac{pos}{10000^\frac{2i}{d_{model}}},\;if\;depth = 2i\\
 \cos\frac{pos}{10000^\frac{2i}{d_{model}}},\;if\;depth = 2i+1
-\end{cases}$$
+\end{cases}$
 
 <center>
 <img src="media/positional_encoding.png" width="80%" title="positional-encoding-process"/>
@@ -61,15 +61,21 @@ Multi-Head Attention을 다루기 전에 Self Attention 개념을 먼저 살펴�
 
 ## Self Attention
 "나는 귀여운 고양이를 가지고 있다"와 같은 문장에서 '나는'이라는 token은 '고양이'라는 token보다 '가지고 있다'라는 token과 더욱 연관되어 있고, 비슷하게 '귀여운'이라는 token은 '나는'보다 '고양이'와 서로 연관되어 있다. 이렇게 문장 내에서 단어간 연관성을 파악하기 위해 사용되는 것이 Self Attention이다. 
+
+Self Attention은 문장 사이에서 각 token간의 연관성을 찾으므로 Attention을 구하는 식에서 Q, T, V를 전부 input embedding에 positional encoding을 더한, 서로 동일한 행렬로 넣어주면 된다. Attention을 구하는 식은 아래와 같다. 
+
+$Attention(Q, T, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$
+
+위 식을 시각화하면 아래와 같다. 예제에서는 6 token 문장 "YOUR CAT IS A LOVELY CAT"을 사용한다. 먼저 $Q$와 $K^T$ 를 곱해 각 단어 간 유사성을 계산한다. 이후 $\sqrt{d_{model}}$ 로 나눠 scale을 맞추고 softmax를 취해 이를 확률로 변환한다.
 <center>
-<img src="media/self_attention.png" width="80%" title="self-attention-process"/>
+<img src="media/self_attention_1.png" width="80%" title="self-attention-process"/>
 </center>
 
-Self Attention에서 Q, T, V는 전부 입력 문장에 대한 input embedding에 positional encoding을 더한 같은 행렬이다. 이때 적용되는 식은 아래와 같다. 
+이후 이 값을 다시 $V$와 곱해 줌으로써 특정 token과 다른 모든 token간의 연관성을 포함하게 된다.
 
-$$Attention(Q, T, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$$
-
-
+<center>
+<img src="media/self_attention_2.png" width="80%" title="self-attention-process"/>
+</center>
 
 ## reference
 Umar Jamil, 

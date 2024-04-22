@@ -1,19 +1,19 @@
 ---
-title: "transformer이란 무엇인가"
+title: "Transformer이란 무엇인가"
 date: "2024-04-20"
 author: "bill0077"
 ---
 
 최근 LLM들이 엄청난 강세이다. 이러한 모델들의 자연어 처리가 비약적으로 상승한 것에는 transformer이라는 아키텍쳐가 개발된 것에 있다. 이게 대체 어떤 원리인 건지, 다른 모델과 어떤것이 다른건지 궁금해서 정리해보며 공부하도록 하겠다.
-개인적으로 공부한 것을 요약한 것이기에 틀린점이 있을 수 있으며, 사용된 이미지는 직접 제작한 것이 아니라 reference(주로 https://github.com/hkproj/transformer-from-scratch-notes)에서 찾은 이미지들로 구성되어 있음을 미리 밝힌다.
+개인적으로 공부한 것을 요약한 것이기에 틀린점이 있을 수 있으며, 사용된 이미지는 직접 제작한 것이 아니라 reference(주로 https://github.com/hkproj/transformer-from-scratch-notes ) 에서 찾은 이미지들로 구성되어 있음을 미리 밝힌다.
 
-# RNN과의 차이점
+## RNN과의 차이점
 먼저 transformer과 기존 RNN 방식의 차이를 간단히 알아보자. 기존 자연어 처리에는 RNN 방식이 주로 사용되었다. RNN은 전체 입력에서 i개의 token들을 입력으로 사용해 결과물 token들을 출력하고, 다시 다음 time step에서 i개의 입력 token들을 활용해 결과를 출력하는 과정을 모든 입력을 처리할 때까지 반복한다. 이 과정에서 모델의 hidden state가 변화하며 이전의 정보를 현재에 token 반영한다.
 <center>
 <img src="___MEDIA_FILE_PATH___/rnn.png" width="80%" title="rnn-workflow"/>
 </center>
 
--> for 문으로 전체 입력 토큰들을 각 time step마다 일정 수만큼 순회하며 결과물을 내놓는 것과 비슷한 방식
+-> for 문으로 전체 입력 토큰들을 각 time step마다 일정 수만큼 순회하며 결과물을 내놓는 것과 비슷한 방식임
 
 따라서 RNN은 
 - for 문으로 입력 토큰들을 순회하며 결과물을 내놓는 방식으로 인하여 긴 입력에 대해 오랜 시간이 필요하게 되고
@@ -56,18 +56,17 @@ $PE(pos, depth)=
 
 주의할 것은 이 positional encoding은 문장이나 token의 내용과는 전혀 상관이 없으며, 오직 위치에 따라 값이 정해지는 개별적인 함수라는 것이다. 따라서 positional encoding은 단 한번 계산 이후 모든 문장에 대해 일괄적으로 적용 가능하다. 앞서 말했듯이 input embedding이 구해지면 각 vector에 같은 크기를 갖는 positional encoding이 더해진다.
 
-positional encoding이 sin과 cos 함수로 이루어진 이유는 pos와 depth(=2i, 2i+1)에 따라 함수를 시각화해보면 위치에 따라 여러 연속적인 패턴이 발생하는 것을 알 수 있는데, 모델이 이 패턴을 학습하기를 바랐기 때문이다.
+positional encoding은 왜 sin과 cos 함수로 이루어져 있을까? pos와 depth(=2i, 2i+1)에 따라 positional endocing 함수를 시각화해보면 위치에 따라 여러 연속적인 패턴이 발생하는 것을 알 수 있는데, 모델이 이 패턴에 따라 token의 위치 별로 다른 정보를 학습하기를 바랐기 때문이다.
 <center>
 <img src="___MEDIA_FILE_PATH___/pe_visualize.png" width="80%" title="positional-encoding-visualization"/>
 </center>
-
 
 ## Self Attention
 Multi-Head Attention을 다루기 전에 Self Attention 개념을 먼저 살펴보자.
 
 "나는 귀여운 고양이를 가지고 있다"와 같은 문장에서 '나는'이라는 token은 '고양이'라는 token보다 '가지고 있다'라는 token과 더욱 연관되어 있고, 비슷하게 '귀여운'이라는 token은 '나는'보다 '고양이'와 서로 연관되어 있다. 이렇게 문장 내에서 단어간 연관성을 파악하기 위해 사용되는 것이 Self Attention이다. 
 
-Self Attention은 문장 사이에서 각 token간의 연관성을 찾으므로 Attention을 구하는 식에서 Q, T, V를 전부 input embedding에 positional encoding을 더한, 서로 동일한 행렬로 넣어주면 된다. Attention을 구하는 식은 아래와 같다. 
+Self Attention은 문장 사이에서 각 token간의 연관성을 찾으므로 Attention을 구하는 식에서 $Q$, $T$, $V$를 전부 input embedding에 positional encoding을 더한, 서로 동일한 행렬로 넣어주면 된다. Attention을 구하는 식은 아래와 같다. 
 
 $Attention(Q, T, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$
 
@@ -77,7 +76,6 @@ $Attention(Q, T, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V$
 </center>
 
 이후 이 값을 다시 $V$와 곱해 줌으로써 특정 token과 다른 모든 token간의 연관성을 포함하게 된다.
-
 <center>
 <img src="___MEDIA_FILE_PATH___/self_attention_2.png" width="80%" title="self-attention-process"/>
 </center>
@@ -104,6 +102,7 @@ multi-head attention를 하나의 input sequence를 각 sub head별로 다른 su
 <img src="___MEDIA_FILE_PATH___/masked_multi_head_attention.png
 " width="60%" title="masked-multi-head-attention-process"/>
 </center>
+
 masked multihead attention은 multihead attention과 비슷하지만 각 token들이 미래의 token은 고려하지 않는다는 것이 다르다 (이는 inference과정과 연관이 있다). multi-head attention에서는 각 $Q$, $K$, $V$들을 여러개로 쪼개고, 각각에 대해 attention 식을 적용했다. masked multi-head attention에서는 이때 각 sub head들을 만들면서 대각선 위쪽의 값들은 -inf 값을 더해 softmax를 취한 결과가 0이 되도록(=mask하여) 만들어준다. 이후에는 다시 각 sub head들을 하나로 concatenate하여 masked multihead attention가 완료된다.
 
 이후 다시 multi head attention을 거치는데, 앞전에 masked multihead attention결과는 decoder에서 $Q$값으로 사용되고, $K$, $V$는 encoder에서 multihead attention이 적용된 결과에서 사용된다. 이로써 input 문장과 output 문장간의 cross attention이 생성되고, 추후에 이를 활용해 학습을 진행할 수 있게된다.

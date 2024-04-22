@@ -4,7 +4,7 @@ date: "2024-04-20"
 author: "bill0077"
 ---
 
-최근 LLM들이 엄청난 강세이다. 이러한 모델들의 자연어 처리가 비약적으로 상승한 것에는 transformer이라는 아키텍쳐가 개발된 것에 있다. 이게 대체 어떤 원리인 건지, 다른 모델과 어떤것이 다른건지 궁금해서 정리해보며 공부하도록 하겠다.
+최근 자연어 모델들의 성능이 비약적으로 상승한 것에는 transformer이라는 아키텍쳐가 개발된 것에 있다. 이게 대체 어떤 원리인 건지, 다른 모델과 어떤것이 다른건지 궁금해서 정리해보며 공부하도록 하겠다.
 개인적으로 공부한 것을 요약한 것이기에 틀린점이 있을 수 있으며, 사용된 이미지는 직접 제작한 것이 아니라 reference(주로 https://github.com/hkproj/transformer-from-scratch-notes ) 에서 찾은 이미지들로 구성되어 있음을 미리 밝힌다.
 
 ## RNN과의 차이점
@@ -28,7 +28,7 @@ author: "bill0077"
 <img src="___MEDIA_FILE_PATH___/transformer.png" width="50%" title="transformer-workflow"/>
 </center>
 
-transformer는 input과 ouput 문장을 받아 그 사이 cross attention을 구하는 것으로 학습과 추론을 진행하며, 크게 encoder과 decoder로 이루어져 있다. encoder는 input을 가공해 key(=$K$), value(=$V$)를 만들고, decoder는 output으로 부터 query(=$Q$)과 $K$, $V$를 이용해 multi-head attention으로 cross attention을 계산한다. 계산된 cross attention을 전체 단어 목록인 vocab으로 classify하는 linear layer을 거쳐 output 문장과 동일한 길이의 결과물이 도출된다.
+transformer는 input과 ouput 문장을 받아 그 사이 cross attention을 구하는 것으로 학습과 추론을 진행하며, 크게 encoder과 decoder로 이루어져 있다. 위의 그림에서 좌측이 encoder, 우측이 decoder이다. encoder는 input을 가공해 key(=$K$), value(=$V$)를 만들고, decoder는 output으로 부터 query(=$Q$)과 $K$, $V$를 이용해 multi-head attention으로 cross attention을 계산한다. 계산된 cross attention을 전체 단어 목록인 vocab으로 classify하는 linear layer을 거쳐 output 문장과 동일한 길이의 결과물이 도출된다.
 
 이제 위 과정을 차례차례 자세히 알아보자. 이후 글에서는 input과 ouput이 위의 구조도를 거치는 과정을 하나하나 짚어본다.
 
@@ -90,14 +90,15 @@ Multi-head attention은 self attention에서 head라는 개념이 추가된다. 
 
 multi-head attention를 하나의 input sequence를 각 sub head별로 다른 sub sequence를 가지므로 하나의 문장을 서로 다른 측면에서 볼 수 있도록 해준다고 한다.
 
-# Layer Normalization
+## Layer Normalization
 <center>
 <img src="___MEDIA_FILE_PATH___/layer_normalization.png" width="80%" title="layer-normalization-process"/>
 </center>
 
 이후 layer nomrmalization이 진행된다. batch normalization과 다르게 각 각 token별로 정규화가 이루어진다.이후 gamma를 곱하고 beta를 더하는 작업이 이루어질 수 있다.
 
-# Masked Multi-Head Attention
+# Decoder
+## Masked Multi-Head Attention
 <center>
 <img src="___MEDIA_FILE_PATH___/masked_multi_head_attention.png
 " width="60%" title="masked-multi-head-attention-process"/>
@@ -107,7 +108,7 @@ masked multihead attention은 multihead attention과 비슷하지만 각 token�
 
 이후 다시 multi head attention을 거치는데, 앞전에 masked multihead attention결과는 decoder에서 $Q$값으로 사용되고, $K$, $V$는 encoder에서 multihead attention이 적용된 결과에서 사용된다. 이로써 input 문장과 output 문장간의 cross attention이 생성되고, 추후에 이를 활용해 학습을 진행할 수 있게된다.
 
-# Linear
+## Linear
 decoder에서 cross attention이 생성되었다면, 이를 활용해 우리의 vocab에서 결과 문장을 출력해야 한다. decoder의 cross attention은 feed forward를 거치고 이후 Linear layer를 통해 가장 적절한 출력을 vocab 목록에서 골라낸다.
 
 # Training

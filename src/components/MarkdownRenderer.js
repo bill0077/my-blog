@@ -1,10 +1,13 @@
 import React from 'react';
-import Markdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
-import remarkGfm from 'remark-gfm'
-import remarkFrontmatter from 'remark-frontmatter'
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import Markdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import rehypeKatex from "rehype-katex";
+import remarkGfm from 'remark-gfm';
+import remarkMath from "remark-math";
+import remarkFrontmatter from 'remark-frontmatter';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import "katex/dist/katex.min.css";
 
 /** Renderer component that converts text into a React component according to Markdown format. */
 export default function MarkdownRenderer({ markdown }) {
@@ -12,9 +15,13 @@ export default function MarkdownRenderer({ markdown }) {
     <Markdown 
       remarkPlugins={[
         remarkGfm, // enables GFM extensions
+        remarkMath, // enables math expression
         remarkFrontmatter // enables frontmatter
       ]} 
-      rehypePlugins={[rehypeRaw]} // enables html tags inside markdown file
+      rehypePlugins={[
+        rehypeRaw, // enables html tags inside markdown file
+        rehypeKatex // enables Katex
+      ]}
       components={{ // custom component stylings inside markdown file
         h1(props) {
           const {children, ...rest} = props;

@@ -114,7 +114,7 @@ decoder에서 cross attention이 생성되었다면, 이를 활용해 우리의 
 # Training
 한국어->영어 번역기를 예를 들어 훈련 과정을 살펴보자. "나는 고양이를 좋아한다"라는 문장은 "I like cats"라는 문장으로 번역되어야 한다. 이때 input 문장 앞뒤에 \<start>과 \<end> token을 추가해 "\<start> 나는 고양이를 좋아한다 \<end>"가 encoder를 거쳐 $K$, $V$가 얻어지고, "I like cats"는 \<start>를 추가해 "\<start> I like cats"로부터 $Q$가 masked multihead attention을 통해 얻어진다. 
 
-이렇게 얻은 $Q$, $K$, $V$를 multi-head attention하여 input 문장과 ouput 문장간의 cross attention을 구하고, linear layer를 통해 vocab으로 구성된 결과물이 구해질 것이다. 우리는 산물을 우리가 원하는 결과인 "I like cats"에 \<end> 토큰을 더한 "I like cats \<end>"와의 cross entrophy를 구하고 역전파하여 모델을 학습할 수 있다.
+이렇게 얻은 $Q$, $K$, $V$를 multi-head attention하여 input 문장과 ouput 문장간의 cross attention을 구하고, linear layer를 통해 vocab으로 구성된 결과물이 구해질 것이다. 우리는 산물을 우리가 원하는 결과인 "I like cats"에 \<end> 토큰을 더한 "I like cats \<end>"와의 cross entropy를 구하고 역전파하여 모델을 학습할 수 있다.
 
 # Inference
 이번에는 모델이 input 만으로 결과를 inference하는 과정을 살펴보자. 이번에는 transformer에 input 문장으로는 "\<start> 나는 고양이를 좋아한다 \<end>"를 넣지만, ouput으로는 "\<start>"만 주어진다. 만일 모델이 잘 훈련되었다면, 결과물은 "I"가 될 것이다. 이제 다시 얻어진 I를 output으로 다시 이용해 model을 돌린다. input은 아까와 동일하지만, output 문장은 "\<start> I"로 다시 모델을 돌리면 결과물은 "I like"가 될 것이다. 이것을 문장 끝에 \<end> token이 나올 때까지 계속 반복하며, 결국 "I like cats \<end>"와 같은 결과가 얻어질 것이다.

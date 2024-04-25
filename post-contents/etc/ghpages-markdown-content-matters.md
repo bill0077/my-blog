@@ -10,3 +10,13 @@ author: "bill0077"
 * img 내부의 src 등이 올바르지 못한 형식일 때도 같은 에러를 발생하는 것을 확인할 수 있었다.
 
 deploy가 제대로 안될 때는 deploy error msg부터 확인하자
+
+
++Gatsby가 갑자기 build가 안될 때: https://github.com/gatsbyjs/gatsby/issues/27644
+가끔 build가 안되면 .cache, public 내부를 지우고
+```cmd
+npm rebuild --update-binary
+```
+
+실행 이후 다시 build 해주면 되는 경우가 많다.
+(build는 잘 되는데 deploy 안되는 경우에도 마찬가지)

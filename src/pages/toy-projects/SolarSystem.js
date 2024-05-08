@@ -8,6 +8,8 @@ export default function SolarSystem() {
   const cameraRef = useRef();
 
   return (
+    <>
+    <title>bill0077</title>
     <div style={{
       width: "100vw", 
       height:"100vh", 
@@ -25,5 +27,6 @@ export default function SolarSystem() {
         </Stage>
       </Canvas>
     </div>
+    </>
   );
 }

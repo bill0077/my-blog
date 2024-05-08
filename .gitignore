@@ -25,6 +25,7 @@ yarn-error.log*
 
 # user contents
 public
+static/post-contents
 
 # environment variables
 .env.*

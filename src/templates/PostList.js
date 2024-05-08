@@ -10,6 +10,7 @@ import * as styles from "../styles/PostList.module.css";
 export default function PostList({ pageContext }) {
   return (
     <div className={styles["postList"]}>
+      <title>{pageContext.category}</title>
       <Navigator />
       <div className={styles["postList__background"]} />
       <div className={styles["postList__category"]}>{pageContext.category}</div>

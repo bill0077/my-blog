@@ -59,6 +59,7 @@ export default function Home() {
 
   return (
   <div className={styles["home"]}>
+    <title>bill0077.log</title>
     <div className={styles["home__main"]}>
       <div className={styles["home__main__canvas"]}>
         {fixedCanvas}

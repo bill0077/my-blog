@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Navigator from "../components/Navigator";
 import MarkdownRenderer from '../components/MarkdownRenderer';
@@ -13,6 +13,7 @@ export default function Post({ pageContext }) {
 
   return (
     <div className={styles["post"]}>
+      <title>{pageContext.category+': '+pageContext.slug}</title>
       <Navigator />
       <div className={styles["post__background"]} />
       <div className={styles["post__content"]}>

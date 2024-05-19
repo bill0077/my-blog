@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { navigate } from "gatsby"
 
+import magnifierImage from '../images/magnifier.png';
 import * as styles from '../styles/QueryInput.module.css';
 
 /** Input component that gets search query and navigate to search page with query as params.
@@ -24,6 +25,7 @@ export default function QueryInput() {
 
   return (
     <div className={styles["queryInput"]}>
+      <img className={styles["queryInput__form__magnifierImage"]} src={magnifierImage} />
       <form className={styles["queryInput__form"]} id="search" onSubmit={ onSubmit }>
         <input className={styles["queryInput__form__input"]} placeholder="search posts here!" onChange={ e => setQuery(e.target.value) } />
       </form>

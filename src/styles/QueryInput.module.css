@@ -4,12 +4,17 @@
   height: 15vh;
 
   align-items: center;
-  justify-items: flex-end;
+  justify-items: center;
 }
 
 .queryInput__form {
   width: 100%;
-  text-align: center;
+}
+
+.queryInput__form__magnifierImage {
+  width: 2vh;
+  position: fixed;
+  margin-left: 1vh;
 }
 
 .queryInput__form__input {
@@ -20,6 +25,6 @@
   border-radius: 2vh;
   border: 0;
 
-  padding-left: 5%;
+  padding-left: 4vh;
   background-color: white;
 }

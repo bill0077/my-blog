@@ -26,7 +26,7 @@ export default function Search() {
     setSearchResult(false)
     setIsConnected(true)
     socket.on("searchResult", onSearchResult);
-    socket.timeout(5000).emit("query", {"query":query});
+    socket.timeout(10000).emit("query", {"query":query});
 
     const interval = setInterval(() => {
       if (!socket.connected) {

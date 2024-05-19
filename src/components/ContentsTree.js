@@ -9,11 +9,9 @@ export default function ContentsTree() {
   return (
     <div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│</div>
-      <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;├── ProblemSolving</div>
-      <div><Link to={`${process.env.GATSBY_PUBLIC_URL}/boj`}  className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── boj </Link></div>
-      <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;├── SideProjects</div>    
       <div><Link to={`${process.env.GATSBY_PUBLIC_URL}/myblog-dev-log`} className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── myblog-dev-log</Link></div>
+      <div><Link to={`${process.env.GATSBY_PUBLIC_URL}/markdown-search-engine`} className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── markdown-search-engine</Link></div>
       <div><Link to={`${process.env.GATSBY_PUBLIC_URL}/tadak-dev-log`} className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── tadak-dev-log</Link></div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;│</div>
       <div className={styles["contentsTree__leaf"]}>&nbsp;&nbsp;├── Study</div>

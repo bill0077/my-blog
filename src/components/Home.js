@@ -5,6 +5,7 @@ import { Stage, PerspectiveCamera, CameraControls, SpotLight } from "@react-thre
 import FallingObjects from "./FallingObjects";
 import HomeObjectList from "./HomeObjectList";
 import ContentsTree from "./ContentsTree";
+import QueryInput from "./QueryInput";
 
 import * as styles from "../styles/Home.module.css";
 
@@ -69,6 +70,7 @@ export default function Home() {
           <Title vibrate={vibrate}/>
           <div className={styles["home__main__titleBox__title__contentsTree"]}>
             <ContentsTree />
+            <QueryInput />
           </div>
         </div>
         <div className={styles["home__main__titleBox__subtitle"]}>함께 성장하는 개발자를 꿈꿉니다</div>

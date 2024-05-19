@@ -72,7 +72,7 @@ export default App;
 
 대략적인 폴더 구조는 아래와 같이 구성했다.
 
-```
+```python
 my-blog
   ├── node_modules
   ├── public

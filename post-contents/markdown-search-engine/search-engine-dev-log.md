@@ -17,7 +17,7 @@ author: "bill0077"
 이때 문제는 영어와 다르게 한국어는 단어 끝마다 조사가 붙어 사실상 같은 token이라도 다르게 처리된다는 것이다. 예를들어 '컨테이너'라고 검색했을 때 인간은 '컨테이너가', '컨테이너에서' 와 같은 단어도 '컨테이너'를 지칭하는 것을 쉽게 알 수 있지만, 알고리즘 상으로 이를 구현하기 쉽지 않다. (자연어 AI를 사용해 각 token을 embedding하지 않는 이상.. 하지만 이 경우 검색 시간 증가도 감수해야하고 AI를 학습시킬 데이터를 만들기도 여간 귀찮은게 아니다)
 
 그래서 가장 먼저 생각해낸 것은 문서별로 유사한 token를 하나의 그룹으로 묶어내는 것이다. Levenshtein distance를 활용해 하나의 token이 다른 token에 얼마나 가까운가의 지표로 활용했다. 모든 token의 순서쌍에 대해 아래와 같은 지표를 계산해 해당 지표의 평균이 0.2(0.2는 시행착오로 찾은 적절한 임의의 임계값이다.)보다 작으면 하나의 그룹인 것으로 간주하고 그렇지 않으면 다른 그룹으로 간주한다.
-```
+```python
 Levenshtein_distance(token1, token2) / average_length(token1, token2)
 ```
 
@@ -31,12 +31,12 @@ Levenshtein_distance(token1, token2) / average_length(token1, token2)
 기존에 있던 24개의 문서들로 시험해본 결과 위의 그래프처럼 $g \simeq 0.43m$ 정도이므로 기존에 걸리던 시간 대비 0.185배이며 5.4배가량 성능 향상을 이루어낼 수 있다. 시간복잡도 자체의 향상은 아니지만 그래도 꽤나 큰 진전이다.
 
 다음으로 대표 token을 어떻게 생성할지 구상해보자. 처음에는 LCS 알고리즘을 사용할까 했지만 이러면 점점 token이 짧아져 문제가 생길것 같았고, 전체 token 그룹을 표현하지 못하는 단점이 있다. 결론적으로 구상한 대표 token(=centroid라 하겠다)의 생성 방식은 대강 아래의 방식을 따른다.
-```
+```python
 centroid[i] = max(token[i] for every token in group)
 ```
 
 그런데 이 방식을 택했을 때 대표를 정하는 과정에서 예상치 못한 오류가 생겨났다. 예를들어 `content`가 `context` token보다 조금 더 많이 쓰이는 경우 둘중 `content` 하나로 대표가 정해져 `context`를 검색하려 해도 검색이 제대로 안되는 상황이 일어난다. 따라서 centroid가 얼마나 정확한지를 centrality를 추가로 고려해 Levenshtein distance를 구할 때 반영해주었다. token과 centroid를 비교해서 centrality가 큰 문자가 다를 경우에는 차이가 크다고 계산하고, centrality가 작은 문자는 달라도 그 차이가 적다고 계산하는 식이다. 이런식으로 위의 문제를 대다수 해결할 수 있었다.
-```
+```python
 centrality[i] = count(max_char[i]) / count(token)
 ```
 
@@ -61,7 +61,7 @@ centrality[i] = count(max_char[i]) / count(token)
 추가적으로 token을 전처리하는 과정을 추가했다. 먼저 영문 token은 대소문자를 구분하지 않는것이 indexing이나 검색 결과 측면에서 더 나았기에 모두 소문자로 변환해 주었다. 또한 한국어 토큰은 각 유니코드 문자를 키보드에 입력되는 순열로 처리하였다. 예를들어 기존 유니코드를 그대로 token으로 사용하면 `컨테이너`는 `컨텡ㅣ너`와 2글자가 차이나지만, 키보드에 입력되는 순열로 보면 모두 `ㅋㅓㄴㅌㅔㅇㅣㄴㅓ`로 같기 때문에 동일하게 처리된다. 한국어는 작은 오타 하나가 전체 유니코드를 모두 바꾸는 경우가 많아 이게 오타 잡기에 더욱 효과적이라 생각한다. 
 
 한글 유니코드는 아래와 같은 규칙을 따른다. 
-```
+```python
 한글코드의 값 = ((초성 * 21) + 중성) * 28 + 종성 + 0xAC00
 ```
 
@@ -98,7 +98,7 @@ https://github.com/bill0077/kor-markdown-search-engine
 
 TODO: 검색 적합도 함수 개선, 시간복잡도 개선, 최적 token 추론 기능 추가
 
-# reference
+## reference
 wikipedia, Levenshtein distance: https://en.wikipedia.org/wiki/Levenshtein_distance
 
 neotune, python-korean-handler: https://github.com/neotune/python-korean-handler/blob/master/korean_handler.py

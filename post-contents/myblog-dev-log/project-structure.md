@@ -9,7 +9,7 @@ Git commit: https://github.com/bill0077/my-blog/commit/79bdca8166fb45089fa90bd00
 
 ### 폴더 구조 잡기
 본격적으로 코딩을 시작하기 전에 간단히 폴더 구조를 잡고 가보자. 하지만 react 공식 문서에서도 명시하듯이 처음부터 완벽하게 폴더 구조를 잡고 갈 필요는 없다. 크게크게 잡아놓고 추후에 수정하면서 가면 될 듯하다. 다른 블로그에도 설명이 깔끔하게 잘 되어 있으니 간단히만 짚고 넘어가겠다.
-```
+```python
 my-blog
   ├── node_modules
   ├── public
